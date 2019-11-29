@@ -26,6 +26,13 @@ function myMap(position) {
   map.data.setStyle({
     fillColor: 'green'
   });
+  map.data.addListener('click', function(event) {
+    var infowindow = new google.maps.InfoWindow({
+      content:  event.feature.getProperty('name')
+    });
+    infowindow.open(map, marker);
+    // map.data.overrideStyle(event.feature, {fillColor: 'red'});
+ });
 };
 
 function getLocation() {
