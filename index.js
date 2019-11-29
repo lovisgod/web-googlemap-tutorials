@@ -21,11 +21,11 @@ function myMap(position) {
   });
 
   // load geojson
-  map.data.loadGeoJson('polygon.json');
-  map.data.loadGeoJson('points.json');
-  map.data.setStyle({
-    fillColor: 'green'
-  });
+  // map.data.loadGeoJson('polygon.json');
+  const layer = map.data.loadGeoJson('points.json');
+  // map.data.setStyle({
+  //   fillColor: 'green'
+  // });
   map.data.addListener('click', function(event) {
     var infowindow = new google.maps.InfoWindow({
       content:  event.feature.getProperty('name')
@@ -33,6 +33,20 @@ function myMap(position) {
     infowindow.open(map, marker);
     // map.data.overrideStyle(event.feature, {fillColor: 'red'});
  });
+
+ const heatMap = [
+  new google.maps.LatLng(4.630591180761991,7.945470213890076),
+  new google.maps.LatLng(4.630591180761991,7.945470213890076),
+  new google.maps.LatLng(4.630591180761991,7.945470213890076),
+  new google.maps.LatLng(4.639420206913925,7.947661114692688),
+  new google.maps.LatLng(4.635520206913925,7.945661114692688),
+  new google.maps.LatLng(4.637420206913925,7.957661114692688),
+  new google.maps.LatLng(4.629420206913925,7.946661114692688),
+ ];
+ var heatmap = new google.maps.visualization.HeatmapLayer({
+  data: heatMap
+});
+heatmap.setMap(map);
 };
 
 function getLocation() {
